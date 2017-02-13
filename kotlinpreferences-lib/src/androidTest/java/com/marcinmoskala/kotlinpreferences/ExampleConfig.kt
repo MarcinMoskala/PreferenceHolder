@@ -1,6 +1,5 @@
 package com.marcinmoskala.kotlinpreferences
 
-import android.content.Context
 import android.content.SharedPreferences
 
 var SharedPreferences.canEatPie: Boolean by bindToPreferenceField(true)
