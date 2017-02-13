@@ -15,27 +15,6 @@ class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val 
     override operator fun getValue(thisRef: SharedPreferences, property: KProperty<*>): T = readValue(property, thisRef)
 
     override fun setValue(thisRef: SharedPreferences, property: KProperty<*>, value: T) {
-        if (value == null) {
-            removeValue(property, thisRef)
-        } else {
-            saveValue(property, thisRef, value)
-        }
-    }
-
-    private fun readValue(property: KProperty<*>, thisRef: SharedPreferences): T = when (clazz.simpleName) {
-        "Long" -> thisRef.getLong(getKey(property), default as Long) as T
-        "Int" -> thisRef.getInt(getKey(property), default as Int) as T
-        "String" -> thisRef.getString(getKey(property), default as? String) as T
-        "Boolean" -> thisRef.getBoolean(getKey(property), default as Boolean) as T
-        "Float" -> thisRef.getFloat(getKey(property), default as Float) as T
-        else -> thisRef.getString(getKey(property), default?.toJson()).fromJson(clazz)
-    }
-
-    private fun removeValue(property: KProperty<*>, thisRef: SharedPreferences) {
-        thisRef.edit().remove(getKey(property)).apply()
-    }
-
-    private fun saveValue(property: KProperty<*>, thisRef: SharedPreferences, value: T?) {
         thisRef.edit().apply {
             when (clazz.simpleName) {
                 "Long" -> putLong(getKey(property), value as Long)
@@ -46,6 +25,15 @@ class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val 
                 else -> putString(getKey(property), value.toJson())
             }
         }.apply()
+    }
+
+    private fun readValue(property: KProperty<*>, thisRef: SharedPreferences): T = when (clazz.simpleName) {
+        "Long" -> thisRef.getLong(getKey(property), default as Long) as T
+        "Int" -> thisRef.getInt(getKey(property), default as Int) as T
+        "String" -> thisRef.getString(getKey(property), default as? String) as T
+        "Boolean" -> thisRef.getBoolean(getKey(property), default as Boolean) as T
+        "Float" -> thisRef.getFloat(getKey(property), default as Float) as T
+        else -> thisRef.getString(getKey(property), default?.toJson()).fromJson(clazz)
     }
 
     private fun getKey(property: KProperty<*>) = key ?: "${property.name}Key"
