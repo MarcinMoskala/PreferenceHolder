@@ -29,3 +29,21 @@ var SharedPreferences.className: String? by bindToPreferenceFieldNullable()
 var SharedPreferences.character: Character? by bindToPreferenceFieldNullable()
 var SharedPreferences.savedGame: Game? by bindToPreferenceFieldNullable()
 ```
+
+## Install
+
+To add KotlinPreferences to the project, add in build.gradle file:
+
+```groovy
+dependencies {
+    compile 'com.github.marcinmoskala:kotlinpreferences:0.03'
+}
+```
+
+And while library is located on JitPack, remember to add on module build.gradle (unless you already have it):
+
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+```
