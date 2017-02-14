@@ -1,0 +1,41 @@
+language: android
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-25.0.2
+    - android-25
+    - extra-android-m2repository
+    - sys-img-armeabi-v7a-android-18
+
+jdk:
+  - oraclejdk8
+
+sudo: true
+
+before_script:
+  - echo no | android create avd --force -n test -t android-18 --abi armeabi-v7a
+  - emulator -avd test -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82
+
+env:
+  matrix:
+    - TEST=connectedDebugAndroidTest
+
+script:
+  - ./gradlew $TEST -i
+
+branches:
+  only:
+  - master
+  - stable
+
+notifications:
+  email: true
+
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.gradle

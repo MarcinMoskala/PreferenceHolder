@@ -3,8 +3,8 @@ package com.marcinmoskala.kotlinpreferences
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
+import org.junit.Assert
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -22,9 +22,9 @@ class NullableChangeTest {
     fun booleanDefaultChangeTest() {
         assertNull(preferences.isMonsterKiller)
         preferences.isMonsterKiller = true
-        assert(preferences.isMonsterKiller!!)
+        assertTrue(preferences.isMonsterKiller!!)
         preferences.isMonsterKiller = false
-        assert(!preferences.isMonsterKiller!!)
+        assertTrue(!preferences.isMonsterKiller!!)
         preferences.isMonsterKiller = null
         assertNull(preferences.isMonsterKiller)
     }

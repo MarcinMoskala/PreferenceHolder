@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -19,11 +20,11 @@ class DefaultChangeTest {
 
     @Test
     fun booleanDefaultChangeTest() {
-        assert(preferences.canEatPie)
+        assertTrue(preferences.canEatPie)
         preferences.canEatPie = false
-        assert(!preferences.canEatPie)
+        assertTrue(!preferences.canEatPie)
         preferences.canEatPie = true
-        assert(preferences.canEatPie)
+        assertTrue(preferences.canEatPie)
     }
 
     @Test
