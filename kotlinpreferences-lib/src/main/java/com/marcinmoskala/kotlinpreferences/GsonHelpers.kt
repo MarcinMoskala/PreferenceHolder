@@ -16,6 +16,6 @@ internal inline fun <reified T : Any> String.fromJson() = fromJson(T::class)
 
 internal fun <T : Any> String.fromJson(clazz: KClass<T>) = try {
     preferencesGson.fromJson(this, clazz.java)
-} catch (e: JsonSyntaxException) {
-    throw Error("Error in parsing \"$this\" to ${clazz.java}", e)
+} catch (e: Throwable) {
+    throw Error("Error in parsing to ${clazz.java}. Possibly lack of gson serializers. The string to parse: \"$this\"", e)
 }
