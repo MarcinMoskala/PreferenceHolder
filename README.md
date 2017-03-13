@@ -1,7 +1,8 @@
-# KotlinPreferences
+# KotlinPreferences Object
 Kotlin Android Library, that makes preference usage simple and fun.
 
-[![](https://jitpack.io/v/marcinmoskala/kotlinpreferences.svg)](https://jitpack.io/#marcinmoskala/kotlinpreferences)
+[![](https://jitpack.io/v/MarcinMoskala/KotlinPreferencesObject.svg)](https://jitpack.io/#MarcinMoskala/KotlinPreferencesObject)
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
 With KotlinPreferencesObject, you can define different preference fields this way:
 
@@ -29,7 +30,7 @@ use it this way:
 if(canEatPie) //...
 ```
 
-Here are other preference definition examples: (see [full example](https://github.com/MarcinMoskala/KotlinPreferences/blob/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences/ExampleConfig.kt) and [usage](https://github.com/MarcinMoskala/KotlinPreferences/tree/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences))
+Here are other preference definition examples: (see [full example](https://github.com/MarcinMoskala/KotlinPreferencesObject/blob/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences/ExampleConfig.kt) and [usage](https://github.com/MarcinMoskala/KotlinPreferencesObject/tree/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences))
 
 ```kotlin
 object UserPref: PreferenceHolder() {
@@ -52,7 +53,7 @@ To add KotlinPreferences to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
-    compile 'com.github.marcinmoskala:kotlinpreferencesobject:0.10'
+    compile 'com.github.marcinmoskala:kotlinpreferencesobject:v0.01'
 }
 ```
 
