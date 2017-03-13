@@ -47,6 +47,18 @@ object UserPref: PreferenceHolder() {
 }
 ```
 
+There must be application Context added to PreferenceHolder companion object. Example:
+
+```kotlin
+class App : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        PreferenceHolder.setContext(this)
+    }
+}
+```
+
 ## Install
 
 To add KotlinPreferences to the project, add in build.gradle file:
