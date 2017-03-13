@@ -1,12 +1,14 @@
 @file:Suppress("UNCHECKED_CAST")
+
 package com.marcinmoskala.kotlinpreferences
 
 import android.content.SharedPreferences
+import kotlin.concurrent.thread
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T> {
+internal open class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T> {
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T = readValue(property, PreferenceHolder.preferences)
 
@@ -35,7 +37,22 @@ internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default:
     private fun getKey(property: KProperty<*>) = key ?: "${property.name}Key"
 }
 
-internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T?> {
+internal class PropertyWithBackup<T : Any>(clazz: KClass<T>, default: T?, key: String? = null) : PreferenceFieldBinder<T>(clazz, default, key) {
+
+    var field: T? = null
+
+    override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T =
+            field ?: super.getValue(thisRef, property).apply { field = this }
+
+    override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T) {
+        field = value
+        thread {
+            super.setValue(thisRef, property, value)
+        }
+    }
+}
+
+internal open class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T?> {
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T? = readValue(property, PreferenceHolder.preferences)
 
@@ -80,6 +97,26 @@ internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val 
     private fun getKey(property: KProperty<*>) = key ?: "${property.name}Key"
 }
 
+internal class NullablePropertyWithBackup<T : Any>(clazz: KClass<T>, key: String? = null) : PreferenceFieldBinderNullable<T>(clazz, key) {
+
+    var propertySet: Boolean = false
+    var field: T? = null
+
+    override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T? = if (propertySet) field else {
+        val newValue = super.getValue(thisRef, property)
+        field = newValue
+        propertySet = true
+        newValue
+    }
+
+    override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T?) {
+        field = value
+        propertySet = true
+        thread {
+            super.setValue(thisRef, property, value)
+        }
+    }
+}
 
 private fun Any?.toJson() = if (this == null) null else PreferenceHolder.preferencesGson.toJson(this)
 
