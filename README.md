@@ -54,10 +54,12 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        PreferenceHolder.setContext(this)
+        PreferenceHolder.setContext(applicationContext)
     }
 }
 ```
+
+It it suggested to do it in project Application class, but it can also be done in BaseActivity or just first activity starting app.
 
 ## Install
 
