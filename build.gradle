@@ -1,9 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.0.6'
+    ext.kotlin_version = '1.1.1-eap-26'
     repositories {
         jcenter()
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
@@ -19,6 +20,8 @@ apply plugin: 'kotlin'
 allprojects {
     repositories {
         jcenter()
+        maven { url 'https://jitpack.io' }
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
     }
 }
 repositories {

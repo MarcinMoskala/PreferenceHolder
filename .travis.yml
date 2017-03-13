@@ -32,9 +32,6 @@ branches:
   - master
   - stable
 
-notifications:
-  email: true
-
 cache:
   directories:
     - $HOME/.m2

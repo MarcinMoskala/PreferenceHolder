@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.marcinmoskala.testapp.MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/textEditView"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/colorPrimary"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/numberEditView"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/colorPrimary"
+            android:ems="10"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/saveObjectButton"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:text="Save object"/>
+
+        <TextView
+            android:id="@+id/objectMonitor"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:textColor="@color/colorPrimary"
+            android:inputType="textPersonName"
+            android:text="Name"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="13dp" />
+
+
+
+    </LinearLayout>
+</ScrollView>
