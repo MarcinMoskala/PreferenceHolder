@@ -3,6 +3,11 @@ package com.marcinmoskala.kotlinpreferences
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.marcinmoskala.kotlinpreferences.TestPreferences.className
+import com.marcinmoskala.kotlinpreferences.TestPreferences.experience
+import com.marcinmoskala.kotlinpreferences.TestPreferences.isMonsterKiller
+import com.marcinmoskala.kotlinpreferences.TestPreferences.monstersKilled
+import com.marcinmoskala.kotlinpreferences.TestPreferences.numberOfHahaInLough
 import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Test
@@ -11,67 +16,65 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class NullableChangeTest {
 
-    val preferences: SharedPreferences
-        get() = InstrumentationRegistry.getTargetContext().preferences
-
     init {
-        preferences.clear()
+        PreferenceHolder.setContext(InstrumentationRegistry.getTargetContext())
+        PreferenceHolder.clear()
     }
 
     @Test
     fun booleanDefaultChangeTest() {
-        assertNull(preferences.isMonsterKiller)
-        preferences.isMonsterKiller = true
-        assertTrue(preferences.isMonsterKiller!!)
-        preferences.isMonsterKiller = false
-        assertTrue(!preferences.isMonsterKiller!!)
-        preferences.isMonsterKiller = null
-        assertNull(preferences.isMonsterKiller)
+        assertNull(isMonsterKiller)
+        isMonsterKiller = true
+        assertTrue(isMonsterKiller!!)
+        isMonsterKiller = false
+        assertTrue(!isMonsterKiller!!)
+        isMonsterKiller = null
+        assertNull(isMonsterKiller)
     }
 
     @Test
     fun intDefaultChangeTest() {
-        assertNull(preferences.monstersKilled)
-        preferences.monstersKilled = 1
-        assertEquals(1, preferences.monstersKilled!!)
-        preferences.monstersKilled = preferences.monstersKilled?.plus(1)
-        assertEquals(2, preferences.monstersKilled!!)
-        preferences.monstersKilled = null
-        assertNull(preferences.monstersKilled)
+        assertNull(monstersKilled)
+        monstersKilled = 1
+        assertEquals(1, monstersKilled!!)
+        monstersKilled = monstersKilled?.plus(1)
+        assertEquals(2, monstersKilled!!)
+        monstersKilled = null
+        assertNull(monstersKilled)
 
     }
 
     @Test
     fun longDefaultChangeTest() {
-        assertNull(preferences.numberOfHahaInLough)
-        preferences.numberOfHahaInLough = 10
-        assertEquals(10, preferences.numberOfHahaInLough!!)
-        preferences.numberOfHahaInLough = 100
-        assertEquals(100, preferences.numberOfHahaInLough!!)
-        preferences.numberOfHahaInLough = null
-        assertNull(preferences.numberOfHahaInLough)
+        assertNull(numberOfHahaInLough)
+        numberOfHahaInLough = 10
+        assertEquals(10, numberOfHahaInLough!!)
+        numberOfHahaInLough = 100
+        assertEquals(100, numberOfHahaInLough!!)
+        numberOfHahaInLough = null
+        assertNull(numberOfHahaInLough)
     }
 
     @Test
     fun floatDefaultChangeTest() {
-        assertNull(preferences.experience)
-        preferences.experience = 0.0F
-        assertEquals(0.0F, preferences.experience!!)
-        preferences.experience = 10.0F
-        assertEquals(10.0F, preferences.experience!!)
-        preferences.experience = null
-        assertNull(preferences.experience)
+        assertNull(experience)
+        experience = 0.0F
+        assertEquals(0.0F, experience!!)
+        experience = 10.0F
+        assertEquals(10.0F, experience!!)
+        experience = null
+        assertNull(experience)
 
     }
 
     @Test
     fun stringDefaultChangeTest() {
-        assertNull(preferences.className)
-        preferences.className = "Rouge"
-        assertEquals("Rouge", preferences.className!!)
-        preferences.className = "Wizard"
-        assertEquals("Wizard", preferences.className!!)
-        preferences.className = null
-        assertNull(preferences.className)
+        assertNull(className)
+        className = "Rouge"
+        assertEquals("Rouge", className!!)
+        className = "Wizard"
+        assertEquals("Wizard", className!!)
+        className = null
+        assertNull(className)
     }
 }

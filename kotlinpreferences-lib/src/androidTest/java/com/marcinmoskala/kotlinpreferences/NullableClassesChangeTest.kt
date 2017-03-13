@@ -3,6 +3,8 @@ package com.marcinmoskala.kotlinpreferences
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.marcinmoskala.kotlinpreferences.ComplexTestPreferences.character
+import com.marcinmoskala.kotlinpreferences.ComplexTestPreferences.savedGame
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
@@ -11,29 +13,27 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class NullableClassesChangeTest {
 
-    val preferences: SharedPreferences
-        get() = InstrumentationRegistry.getTargetContext().preferences
-
     init {
-        preferences.clear()
+        PreferenceHolder.setContext(InstrumentationRegistry.getTargetContext())
+        PreferenceHolder.clear()
     }
 
     @Test
     fun characterTest() {
-        assertNull(preferences.character)
-        preferences.character = Character("Marcin", "Human", "Wizzard")
-        assertEquals(Character("Marcin", "Human", "Wizzard"), preferences.character!!)
-        preferences.character = preferences.character!!.copy(race = "SuperHuman")
-        assertEquals("SuperHuman", preferences.character!!.race)
-        assertEquals(Character("Marcin", "SuperHuman", "Wizzard"), preferences.character!!)
+        assertNull(character)
+        character = Character("Marcin", "Human", "Wizzard")
+        assertEquals(Character("Marcin", "Human", "Wizzard"), character!!)
+        character = character!!.copy(race = "SuperHuman")
+        assertEquals("SuperHuman", character!!.race)
+        assertEquals(Character("Marcin", "SuperHuman", "Wizzard"), character!!)
     }
 
     @Test
     fun bigObjectTest() {
-        assertNull(preferences.savedGame)
-        preferences.savedGame = Game(Character("Marcin", "Human", "Wizzard"), GameMode.Hard, 100)
-        assertEquals(Character("Marcin", "Human", "Wizzard"), preferences.savedGame!!.character)
-        assertEquals(GameMode.Hard, preferences.savedGame!!.gameMode)
-        assertEquals(100, preferences.savedGame!!.level)
+        assertNull(savedGame)
+        savedGame = Game(Character("Marcin", "Human", "Wizzard"), GameMode.Hard, 100)
+        assertEquals(Character("Marcin", "Human", "Wizzard"), savedGame!!.character)
+        assertEquals(GameMode.Hard, savedGame!!.gameMode)
+        assertEquals(100, savedGame!!.level)
     }
 }
