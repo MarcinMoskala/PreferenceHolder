@@ -6,7 +6,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T> {
+class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T> {
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T = readValue(property, PreferenceHolder.preferences)
 
@@ -35,7 +35,7 @@ internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default:
     private fun getKey(property: KProperty<*>) = key ?: "${property.name}Key"
 }
 
-internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T?> {
+class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T?> {
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T? = readValue(property, PreferenceHolder.preferences)
 

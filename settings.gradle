@@ -1,1 +1,1 @@
-include ':kotlinpreferences-lib'
+include ':kotlinpreferences-lib', ':testapp'
