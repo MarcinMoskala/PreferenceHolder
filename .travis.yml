@@ -22,7 +22,7 @@ before_script:
 
 env:
   matrix:
-    - TEST=connectedDebugAndroidTest
+    - TEST=:kotlinpreferences-lib:connectedDebugAndroidTest
 
 script:
   - ./gradlew $TEST -i
