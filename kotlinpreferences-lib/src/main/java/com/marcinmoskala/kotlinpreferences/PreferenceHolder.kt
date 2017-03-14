@@ -9,9 +9,6 @@ import com.marcinmoskala.kotlinpreferences.bindings.PreferenceFieldBinder
 import com.marcinmoskala.kotlinpreferences.bindings.PreferenceFieldBinderNullable
 import com.marcinmoskala.kotlinpreferences.bindings.PropertyWithBackup
 import com.marcinmoskala.kotlinpreferences.bindings.PropertyWithBackupNullable
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KClass
-import kotlin.reflect.KProperty
 
 abstract class PreferenceHolder {
 
@@ -19,9 +16,9 @@ abstract class PreferenceHolder {
 
     protected inline fun <reified T : Any> bindToPreferenceFieldNullable(key: String? = null) = PreferenceFieldBinderNullable(T::class, key)
 
-    protected inline fun <reified T : Any> propertyWithBackup(default: T?, key: String? = null) = PropertyWithBackup(T::class, default, key)
+//    protected inline fun <reified T : Any> propertyWithBackup(default: T?, key: String? = null) = PropertyWithBackup(T::class, default, key)
 
-    protected inline fun <reified T : Any> propertyWithBackupNullable(key: String? = null) = PropertyWithBackupNullable(T::class, key)
+//    protected inline fun <reified T : Any> propertyWithBackupNullable(key: String? = null) = PropertyWithBackupNullable(T::class, key)
 
     companion object {
 
