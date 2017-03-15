@@ -63,7 +63,7 @@ class App : Application() {
 }
 ```
 
-It it suggested to do it in project Application class, but it can also be done in BaseActivity or just first activity starting app. As an alternative, there can also be added KotlinPreferencesObjectApplication as an name in application in AndroidManifest: ([example](https://github.com/MarcinMoskala/KotlinPreferencesObject/blob/master/sample/src/main/AndroidManifest.xml))
+It it suggested to do it in project Application class, but it can also be done in BaseActivity or just first activity starting app. As an alternative, there can also be added KotlinPreferencesObjectApplication as an name in application in AndroidManifest: ([example](https://github.com/MarcinMoskala/KotlinPreferencesObject/blob/master/sample/src/main/AndroidManifest.xml#L12))
 
 ```
 android:name=".KotlinPreferencesObjectApplication"
