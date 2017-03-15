@@ -27,9 +27,7 @@ android {
 dependencies {
 //    compile project(":kotlinpreferences-lib")
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
     compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
