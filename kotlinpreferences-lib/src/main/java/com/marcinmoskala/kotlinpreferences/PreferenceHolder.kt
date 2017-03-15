@@ -7,18 +7,22 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.marcinmoskala.kotlinpreferences.bindings.PreferenceFieldBinder
 import com.marcinmoskala.kotlinpreferences.bindings.PreferenceFieldBinderNullable
-import com.marcinmoskala.kotlinpreferences.bindings.PropertyWithBackup
-import com.marcinmoskala.kotlinpreferences.bindings.PropertyWithBackupNullable
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KClass
 
 abstract class PreferenceHolder {
 
-    protected inline fun <reified T : Any> bindToPreferenceField(default: T?, key: String? = null) = PreferenceFieldBinder(T::class, default, key)
+    protected inline fun <reified T : Any> bindToPreferenceField(default: T?, key: String? = null): ReadWriteProperty<PreferenceHolder, T>
+            = bindToPreferenceField(T::class, default, key)
 
-    protected inline fun <reified T : Any> bindToPreferenceFieldNullable(key: String? = null) = PreferenceFieldBinderNullable(T::class, key)
+    protected inline fun <reified T : Any> bindToPreferenceFieldNullable(key: String? = null): ReadWriteProperty<PreferenceHolder, T?>
+            = bindToPreferenceFieldNullable(T::class, key)
 
-//    protected inline fun <reified T : Any> propertyWithBackup(default: T?, key: String? = null) = PropertyWithBackup(T::class, default, key)
+    protected fun <T: Any> bindToPreferenceField(clazz: KClass<T>, default: T?, key: String?): ReadWriteProperty<PreferenceHolder, T>
+            = PreferenceFieldBinder(clazz, default, key)
 
-//    protected inline fun <reified T : Any> propertyWithBackupNullable(key: String? = null) = PropertyWithBackupNullable(T::class, key)
+    protected fun <T: Any> bindToPreferenceFieldNullable(clazz: KClass<T>, key: String?): ReadWriteProperty<PreferenceHolder, T?>
+            = PreferenceFieldBinderNullable(clazz, key)
 
     companion object {
 

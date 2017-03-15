@@ -7,7 +7,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-open class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T> {
+internal open class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val key: String?) : ReadWriteProperty<PreferenceHolder, T> {
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T = readValue(property)
 

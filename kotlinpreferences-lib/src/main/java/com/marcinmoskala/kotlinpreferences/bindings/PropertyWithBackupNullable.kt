@@ -5,7 +5,7 @@ import kotlin.concurrent.thread
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-class PropertyWithBackupNullable<T : Any>(clazz: KClass<T>, key: String? = null) : PreferenceFieldBinderNullable<T>(clazz, key) {
+internal class PropertyWithBackupNullable<T : Any>(clazz: KClass<T>, key: String? = null) : PreferenceFieldBinderNullable<T>(clazz, key) {
 
     var propertySet: Boolean = false
     var field: T? = null

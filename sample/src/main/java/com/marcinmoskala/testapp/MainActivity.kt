@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         textEditView.setText(Pref.text)
         numberEditView.setText(Pref.num.toString())
-        textEditView.setOnKeyListener { _, _, _ -> Pref.text = text; true }
-        numberEditView.setOnKeyListener { _, _, _ -> Pref.num = num; true }
+        textEditView.setOnKeyListener { v, k, e -> Pref.text = text; true }
+        numberEditView.setOnKeyListener { v, k, e -> Pref.num = num; true }
         saveObjectButton.setOnClickListener {
             val newObject = OtherPref.Together(text, num)
             OtherPref.together = newObject
