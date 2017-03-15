@@ -44,19 +44,8 @@ internal open class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>,
                 .apply()
     }
 
-    private fun saveValue(property: KProperty<*>, value: T?) {
-        pref.edit().apply { putValue(property, value) }.apply()
-    }
-
-    private fun SharedPreferences.Editor.putValue(property: KProperty<*>, value: T?) {
-        when (clazz.simpleName) {
-            "Long" -> putLong(getKey(property), value as Long)
-            "Int" -> putInt(getKey(property), value as Int)
-            "String" -> putString(getKey(property), value as String?)
-            "Boolean" -> putBoolean(getKey(property), value as Boolean)
-            "Float" -> putFloat(getKey(property), value as Float)
-            else -> putString(getKey(property), value.toJson())
-        }
+    private fun saveValue(property: KProperty<*>, value: T) {
+        pref.edit().apply { putValue(clazz, value, getKey(property)) }.apply()
     }
 
     private fun getKey(property: KProperty<*>) = key ?: "${property.name}Key"
