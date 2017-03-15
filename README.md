@@ -6,6 +6,8 @@ Kotlin Android Library, that makes preference usage simple and fun.
 [![Build Status](https://travis-ci.org/MarcinMoskala/KotlinPreferencesObject.svg?branch=master)](https://travis-ci.org/MarcinMoskala/KotlinPreferencesObject)
 [![codebeat badge](https://codebeat.co/badges/77906760-0206-43bb-a05a-7ffe093bb9d3)](https://codebeat.co/projects/github-com-marcinmoskala-kotlinpreferencesobject-master)
 
+This library younger brother of [KotlinPreferences](https://github.com/MarcinMoskala/KotlinPreferences).
+
 With KotlinPreferencesObject, you can define different preference fields this way:
 
 ```kotlin
@@ -73,7 +75,7 @@ To add KotlinPreferences to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
-    compile 'com.github.marcinmoskala:kotlinpreferencesobject:v0.01'
+    compile 'com.github.marcinmoskala:kotlinpreferencesobject:1.00'
 }
 ```
 
