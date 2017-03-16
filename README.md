@@ -41,11 +41,17 @@ object UserPref: PreferenceHolder() {
     var canEatPie: Boolean by bindToPreferenceField(true)
     var allPieInTheWorld: Long by bindToPreferenceField(0)
 
+    // Properties can be aslo nullable
     var isMonsterKiller: Boolean? by bindToPreferenceFieldNullable()
     var monstersKilled: Int? by bindToPreferenceFieldNullable()
-    var experience: Float? by bindToPreferenceFieldNullable()
-    var className: String? by bindToPreferenceFieldNullable()
+    
+    // Property with backup is reading stored value in the first usage, 
+    // and saving it, in background, each time it is changed
+    var experience: Float? by bindToPropertyWithBackup(-1.0F) 
+    var className: String? by bindToPropertyWithBackupNullable()
 
+    // Each type, that can be serialized and deserialized using Gson, 
+    // can be used as type of property binded to SharedPreference field.
     var character: Character? by bindToPreferenceFieldNullable()
     var savedGame: Game? by bindToPreferenceFieldNullable()
 }
