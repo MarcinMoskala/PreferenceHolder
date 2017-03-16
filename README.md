@@ -1,4 +1,4 @@
-# KotlinPreferences Object
+# PreferenceHolder
 Kotlin Android Library, that makes preference usage simple and fun.
 
 [![](https://jitpack.io/v/MarcinMoskala/PreferenceHolder.svg)](https://jitpack.io/#MarcinMoskala/PreferenceHolder)
@@ -8,7 +8,7 @@ Kotlin Android Library, that makes preference usage simple and fun.
 
 This library younger brother of [KotlinPreferences](https://github.com/MarcinMoskala/KotlinPreferences).
 
-With KotlinPreferencesObject, you can define different preference fields this way:
+With PreferenceHolder, you can define different preference fields this way:
 
 ```kotlin
 object Pref: PreferenceHolder() {
@@ -71,7 +71,7 @@ android:name=".PreferenceHolderApplication"
 
 ## Install
 
-To add KotlinPreferences to the project, add in build.gradle file:
+To add PreferenceHolder to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
