@@ -2,11 +2,8 @@ package com.marcinmoskala.kotlinpreferences
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.reflect.KMutableProperty0
 
 @RunWith(AndroidJUnit4::class)
 class PreferenceFieldTest {

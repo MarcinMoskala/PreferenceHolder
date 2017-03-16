@@ -1,17 +1,11 @@
 package com.marcinmoskala.kotlinpreferences
 
-import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.marcinmoskala.kotlinpreferences.TestPreferences.className
-import com.marcinmoskala.kotlinpreferences.TestPreferences.experience
-import com.marcinmoskala.kotlinpreferences.TestPreferences.isMonsterKiller
-import com.marcinmoskala.kotlinpreferences.TestPreferences.monstersKilled
-import com.marcinmoskala.kotlinpreferences.TestPreferences.numberOfHahaInLough
 import org.junit.Assert
-import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.reflect.KMutableProperty0
 
 @RunWith(AndroidJUnit4::class)
 class SpeedComparationTest {
@@ -30,19 +24,8 @@ class SpeedComparationTest {
 
     @Test
     fun propertyReadTest() {
-        @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE") var a = 0
-        ComparePreferences.f = 10
-        val normalReadTime = measureTime {
-            repeat(200) {
-                a = ComparePreferences.f
-            }
-        }
-        ComparePreferences.p = 10
-        val propertyReadTime = measureTime {
-            repeat(200) {
-                a = ComparePreferences.p
-            }
-        }
+        val normalReadTime = getReadTime(ComparePreferences::f)
+        val propertyReadTime = getReadTime(ComparePreferences::p)
         Assert.assertTrue(normalReadTime > propertyReadTime)
     }
 
@@ -56,5 +39,12 @@ class SpeedComparationTest {
             ComparePreferences.pl = bigList
         }
         Assert.assertTrue(normalWriteTime > propertyWriteTime)
+    }
+
+    private fun getReadTime(property: KMutableProperty0<Int>): Long {
+        property.set(10)
+        return measureTime {
+            repeat(200) { property.get() }
+        }
     }
 }
