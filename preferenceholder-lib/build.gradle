@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.marcinmoskala.kotlinpreferences'
+group='com.marcinmoskala.preferenceholder'
 
 android {
     compileSdkVersion 25
