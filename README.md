@@ -1,10 +1,10 @@
 # KotlinPreferences Object
 Kotlin Android Library, that makes preference usage simple and fun.
 
-[![](https://jitpack.io/v/MarcinMoskala/KotlinPreferencesObject.svg)](https://jitpack.io/#MarcinMoskala/KotlinPreferencesObject)
+[![](https://jitpack.io/v/MarcinMoskala/PreferenceHolder.svg)](https://jitpack.io/#MarcinMoskala/PreferenceHolder)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Build Status](https://travis-ci.org/MarcinMoskala/KotlinPreferencesObject.svg?branch=master)](https://travis-ci.org/MarcinMoskala/KotlinPreferencesObject)
-[![codebeat badge](https://codebeat.co/badges/77906760-0206-43bb-a05a-7ffe093bb9d3)](https://codebeat.co/projects/github-com-marcinmoskala-kotlinpreferencesobject-master)
+[![Build Status](https://travis-ci.org/MarcinMoskala/PreferenceHolder.svg?branch=master)](https://travis-ci.org/MarcinMoskala/PreferenceHolder)
+[![codebeat badge](https://codebeat.co/badges/035647e2-1a10-48b8-80ae-e6a02c5c0ded)](https://codebeat.co/projects/github-com-marcinmoskala-preferenceholder-master)
 
 This library younger brother of [KotlinPreferences](https://github.com/MarcinMoskala/KotlinPreferences).
 
@@ -34,7 +34,7 @@ use it this way:
 if(canEatPie) //...
 ```
 
-Here are other preference definition examples: (see [full example](https://github.com/MarcinMoskala/KotlinPreferencesObject/blob/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences/ExampleConfig.kt) and [usage](https://github.com/MarcinMoskala/KotlinPreferencesObject/tree/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences))
+Here are other preference definition examples: (see [full example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences/ExampleConfig.kt) and [usage](https://github.com/MarcinMoskala/PreferenceHolder/tree/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences))
 
 ```kotlin
 object UserPref: PreferenceHolder() {
@@ -63,10 +63,10 @@ class App : Application() {
 }
 ```
 
-It it suggested to do it in project Application class, but it can also be done in BaseActivity or just first activity starting app. As an alternative, there can also be added KotlinPreferencesObjectApplication as an name in application in AndroidManifest: ([example](https://github.com/MarcinMoskala/KotlinPreferencesObject/blob/master/sample/src/main/AndroidManifest.xml#L12))
+It it suggested to do it in project Application class, but it can also be done in BaseActivity or just first activity starting app. As an alternative, there can also be added PreferenceHolderApplication as an name in application in AndroidManifest: ([example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/sample/src/main/AndroidManifest.xml#L12))
 
 ```
-android:name=".KotlinPreferencesObjectApplication"
+android:name=".PreferenceHolderApplication"
 ```
 
 ## Install
@@ -75,7 +75,7 @@ To add KotlinPreferences to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
-    compile 'com.github.marcinmoskala:kotlinpreferencesobject:1.00'
+    compile 'com.github.marcinmoskala:preferenceholder:1.10-beta.1'
 }
 ```
 
