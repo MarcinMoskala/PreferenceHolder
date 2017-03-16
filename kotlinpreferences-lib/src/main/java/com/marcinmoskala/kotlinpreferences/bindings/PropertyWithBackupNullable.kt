@@ -18,8 +18,9 @@ internal class PropertyWithBackupNullable<T : Any>(clazz: KClass<T>, key: String
     }
 
     override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T?) {
-        field = value
         propertySet = true
+        if(value == field) return
+        field = value
         thread {
             super.setValue(thisRef, property, value)
         }
