@@ -41,7 +41,6 @@ object UserPref: PreferenceHolder() {
     var canEatPie: Boolean by bindToPreferenceField(true)
     var allPieInTheWorld: Long by bindToPreferenceField(0)
 
-    // Properties can be aslo nullable
     var isMonsterKiller: Boolean? by bindToPreferenceFieldNullable()
     var monstersKilled: Int? by bindToPreferenceFieldNullable()
     
