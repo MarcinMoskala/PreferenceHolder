@@ -1,4 +1,4 @@
 preferenceholder-lib/src/androidTest/**
-preferenceholder-lib/src/main/java/com/marcinmoskala/kotlinpreferences/PreferenceHolder
-preferenceholder-lib/src/main/java/com/marcinmoskala/kotlinpreferences/PreferenceHolderApplication
+preferenceholder-lib/src/main/java/com/marcinmoskala/kotlinpreferences/PreferenceHolder.kt
+preferenceholder-lib/src/main/java/com/marcinmoskala/kotlinpreferences/PreferenceHolderApplication.kt
 sample/**
