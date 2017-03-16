@@ -1,11 +1,14 @@
-package com.marcinmoskala.kotlinpreferences
+package com.marcinmoskala.testapp
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.marcinmoskala.kotlinpreferences.PreferenceHolder
+import com.marcinmoskala.testapp.TestPreferences.canEatPie
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.reflect.KMutableProperty0
 
 @RunWith(AndroidJUnit4::class)
 class DefaultChangeTest {
@@ -17,11 +20,16 @@ class DefaultChangeTest {
 
     @Test
     fun booleanDefaultChangeTest() {
-        assertTrue(TestPreferences.canEatPie)
-        TestPreferences.canEatPie = false
-        assertTrue(!TestPreferences.canEatPie)
-        TestPreferences.canEatPie = true
-        assertTrue(TestPreferences.canEatPie)
+        testBoolean(TestPreferences::canEatPie)
+    }
+
+    private fun testBoolean(property: KMutableProperty0<Boolean>) {
+        assertTrue(property.get())
+        property.set(false)
+        canEatPie = false
+        assertTrue(!canEatPie)
+        canEatPie = true
+        assertTrue(canEatPie)
     }
 
     @Test

@@ -1,10 +1,13 @@
-package com.marcinmoskala.kotlinpreferences
+package com.marcinmoskala.testapp
 
-import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.marcinmoskala.kotlinpreferences.ComplexTestPreferences.character
-import com.marcinmoskala.kotlinpreferences.ComplexTestPreferences.savedGame
+import com.marcinmoskala.kotlinpreferences.PreferenceHolder
+import com.marcinmoskala.testapp.Character
+import com.marcinmoskala.testapp.ComplexTestPreferences.character
+import com.marcinmoskala.testapp.ComplexTestPreferences.savedGame
+import com.marcinmoskala.testapp.Game
+import com.marcinmoskala.testapp.GameMode
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

@@ -1,13 +1,14 @@
-package com.marcinmoskala.kotlinpreferences
+package com.marcinmoskala.testapp
 
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.marcinmoskala.kotlinpreferences.TestPreferences.className
-import com.marcinmoskala.kotlinpreferences.TestPreferences.experience
-import com.marcinmoskala.kotlinpreferences.TestPreferences.isMonsterKiller
-import com.marcinmoskala.kotlinpreferences.TestPreferences.monstersKilled
-import com.marcinmoskala.kotlinpreferences.TestPreferences.numberOfHahaInLough
+import com.marcinmoskala.kotlinpreferences.PreferenceHolder
+import com.marcinmoskala.testapp.TestPreferences.className
+import com.marcinmoskala.testapp.TestPreferences.experience
+import com.marcinmoskala.testapp.TestPreferences.isMonsterKiller
+import com.marcinmoskala.testapp.TestPreferences.monstersKilled
+import com.marcinmoskala.testapp.TestPreferences.numberOfHahaInLough
 import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Test
