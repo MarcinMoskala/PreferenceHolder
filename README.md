@@ -22,18 +22,6 @@ And use it this way:
 if(Pref.canEatPie) //...
 ```
 
-Or with static import:
-
-```kotlin
-import com.projectpackage.Pref.canEatPie
-```
-
-use it this way:
-
-```kotlin
-if(canEatPie) //...
-```
-
 Here are other preference definition examples: (see [full example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences/ExampleConfig.kt) and [usage](https://github.com/MarcinMoskala/PreferenceHolder/tree/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences))
 
 ```kotlin
