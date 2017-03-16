@@ -45,7 +45,7 @@ object UserPref: PreferenceHolder() {
     var monstersKilled: Int? by bindToPreferenceFieldNullable()
     
     // Property with backup is reading stored value in the first usage, 
-    // and saving it, in background, each time it is changed
+    // and saving it, in background, each time it is changed.
     var experience: Float? by bindToPropertyWithBackup(-1.0F) 
     var className: String? by bindToPropertyWithBackupNullable()
 
