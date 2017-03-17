@@ -22,18 +22,6 @@ And use it this way:
 if(Pref.canEatPie) //...
 ```
 
-Or with static import:
-
-```kotlin
-import com.projectpackage.Pref.canEatPie
-```
-
-use it this way:
-
-```kotlin
-if(canEatPie) //...
-```
-
 Here are other preference definition examples: (see [full example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences/ExampleConfig.kt) and [usage](https://github.com/MarcinMoskala/PreferenceHolder/tree/master/kotlinpreferences-lib/src/androidTest/java/com/marcinmoskala/kotlinpreferences))
 
 ```kotlin
@@ -41,12 +29,11 @@ object UserPref: PreferenceHolder() {
     var canEatPie: Boolean by bindToPreferenceField(true)
     var allPieInTheWorld: Long by bindToPreferenceField(0)
 
-    // Properties can be aslo nullable
     var isMonsterKiller: Boolean? by bindToPreferenceFieldNullable()
     var monstersKilled: Int? by bindToPreferenceFieldNullable()
     
     // Property with backup is reading stored value in the first usage, 
-    // and saving it, in background, each time it is changed
+    // and saving it, in background, each time it is changed.
     var experience: Float? by bindToPropertyWithBackup(-1.0F) 
     var className: String? by bindToPropertyWithBackupNullable()
 
@@ -81,7 +68,7 @@ To add PreferenceHolder to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
-    compile 'com.github.marcinmoskala:preferenceholder:1.10-beta.1'
+    compile 'com.github.MarcinMoskala:PreferenceHolder:1.1-beta.1'
 }
 ```
 
