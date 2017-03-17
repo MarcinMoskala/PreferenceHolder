@@ -27,34 +27,3 @@ object PropertiesPreferences: PreferenceHolder() {
     var experience: Float? by bindToPropertyWithBackupNullable()
     var className: String? by bindToPropertyWithBackupNullable()
 }
-
-object ComparePreferences: PreferenceHolder() {
-    var f: Int by bindToPreferenceField(0)
-    var p: Int by bindToPropertyWithBackup(0)
-
-    var fl: ListPackage? by bindToPreferenceFieldNullable()
-    var pl: ListPackage? by bindToPropertyWithBackupNullable()
-}
-
-object ComplexTestPreferences: PreferenceHolder() {
-    var character: Character? by bindToPreferenceFieldNullable()
-    var savedGame: Game? by bindToPreferenceFieldNullable()
-}
-
-data class ListPackage(val list: List<Int>)
-
-data class Character(
-        val name: String,
-        val race: String,
-        val clazz: String
-)
-
-data class Game(
-        val character: Character,
-        val gameMode: GameMode,
-        val level: Int
-)
-
-enum class GameMode {
-    Easy, Normal, Hard
-}

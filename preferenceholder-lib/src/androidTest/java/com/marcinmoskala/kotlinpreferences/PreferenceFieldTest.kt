@@ -6,12 +6,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PreferenceFieldTest {
-
-    init {
-        PreferenceHolder.setContext(InstrumentationRegistry.getTargetContext())
-        PreferenceHolder.clear()
-    }
+class PreferenceFieldTest: BaseTest() {
 
     @Test
     fun booleanDefaultChangeTest() {

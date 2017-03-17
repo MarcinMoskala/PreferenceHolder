@@ -4,11 +4,12 @@ package com.marcinmoskala.kotlinpreferences.bindings
 
 import android.content.SharedPreferences
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder
+import java.lang.reflect.Type
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal open class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val key: String? = null) : ReadWriteProperty<PreferenceHolder, T?> {
+internal open class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val type: Type, val key: String?) : ReadWriteProperty<PreferenceHolder, T?> {
 
     val pref: SharedPreferences
         get() = PreferenceHolder.preferences
@@ -35,7 +36,7 @@ internal open class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>,
         "String" -> getString(key, null) as? T
         "Boolean" -> getBoolean(key, false) as? T
         "Float" -> getFloat(key, -1.0F) as T
-        else -> getString(key, null)?.fromJson(clazz)
+        else -> getString(key, null)?.fromJson<T>(type) as? T
     }
 
     private fun removeValue(property: KProperty<*>) {

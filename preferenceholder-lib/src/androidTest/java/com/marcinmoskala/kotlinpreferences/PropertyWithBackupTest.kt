@@ -6,12 +6,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PropertyWithBackupTest {
-
-    init {
-        PreferenceHolder.setContext(InstrumentationRegistry.getTargetContext())
-        PreferenceHolder.clear()
-    }
+class PropertyWithBackupTest: BaseTest() {
 
     @Test
     fun booleanDefaultChangeTest() {

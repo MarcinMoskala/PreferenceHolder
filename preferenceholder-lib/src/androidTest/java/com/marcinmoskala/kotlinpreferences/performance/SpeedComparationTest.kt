@@ -1,19 +1,16 @@
-package com.marcinmoskala.kotlinpreferences
+package com.marcinmoskala.kotlinpreferences.performance
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.marcinmoskala.kotlinpreferences.BaseTest
+import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import kotlin.reflect.KMutableProperty0
 
 @RunWith(AndroidJUnit4::class)
-class SpeedComparationTest {
-
-    init {
-        PreferenceHolder.setContext(InstrumentationRegistry.getTargetContext())
-        PreferenceHolder.clear()
-    }
+class SpeedComparationTest: BaseTest() {
 
     fun measureTime(f: () -> Unit): Long {
         val startTime = System.currentTimeMillis()

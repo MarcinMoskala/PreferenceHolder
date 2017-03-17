@@ -1,19 +1,15 @@
-package com.marcinmoskala.kotlinpreferences
+package com.marcinmoskala.kotlinpreferences.objects
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.marcinmoskala.kotlinpreferences.ComplexTestPreferences.character
-import com.marcinmoskala.kotlinpreferences.ComplexTestPreferences.savedGame
+import com.marcinmoskala.kotlinpreferences.BaseTest
+import com.marcinmoskala.kotlinpreferences.PreferenceHolder
+import com.marcinmoskala.kotlinpreferences.testValues
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class ObjectsTest {
-
-    init {
-        PreferenceHolder.setContext(InstrumentationRegistry.getTargetContext())
-        PreferenceHolder.clear()
-    }
+class ObjectsTest: BaseTest() {
 
     @Test
     fun characterTest() {
