@@ -6,7 +6,7 @@ import kotlin.concurrent.thread
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal class PropertyWithBackup<T : Any>(clazz: KClass<T>, default: T?, type: Type, key: String?) : PreferenceFieldBinder<T>(clazz, default, type, key) {
+internal class PropertyWithBackup<T : Any>(clazz: KClass<T>, default: T, type: Type, key: String?) : PreferenceFieldBinder<T>(clazz, default, type, key) {
 
     var field: T? = null
 

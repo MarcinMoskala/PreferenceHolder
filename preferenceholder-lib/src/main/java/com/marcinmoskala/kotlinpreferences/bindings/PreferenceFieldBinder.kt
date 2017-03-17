@@ -8,7 +8,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal open class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T?, val type: Type, val key: String?) : ReadWriteProperty<PreferenceHolder, T> {
+internal open class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T, val type: Type, val key: String?) : ReadWriteProperty<PreferenceHolder, T> {
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T = readValue(property)
 
@@ -25,7 +25,7 @@ internal open class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val def
             "String" -> getString(getKey(property), default as? String) as T
             "Boolean" -> getBoolean(getKey(property), default as Boolean) as T
             "Float" -> getFloat(getKey(property), default as Float) as T
-            else -> getString(getKey(property), default?.toJson()).fromJson(type)
+            else -> getString(getKey(property), default.toJson()).fromJson(type)
         }
     }
 

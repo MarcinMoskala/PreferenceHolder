@@ -16,25 +16,25 @@ import kotlin.reflect.KClass
 
 abstract class PreferenceHolder {
 
-    protected inline fun <reified T : Any> bindToPreferenceField(default: T?, key: String? = null): ReadWriteProperty<PreferenceHolder, T>
+    protected inline fun <reified T : Any> bindToPreferenceField(default: T, key: String? = null): ReadWriteProperty<PreferenceHolder, T>
             = bindToPreferenceField(T::class, default, object : TypeToken<T>() {}.type, key)
 
     protected inline fun <reified T : Any> bindToPreferenceFieldNullable(key: String? = null): ReadWriteProperty<PreferenceHolder, T?>
             = bindToPreferenceFieldNullable(T::class, object : TypeToken<T>() {}.type, key)
 
-    protected inline fun <reified T : Any> bindToPropertyWithBackup(default: T?, key: String? = null): ReadWriteProperty<PreferenceHolder, T>
+    protected inline fun <reified T : Any> bindToPropertyWithBackup(default: T, key: String? = null): ReadWriteProperty<PreferenceHolder, T>
             = bindToPropertyWithBackup(T::class, default, object : TypeToken<T>() {}.type, key)
 
     protected inline fun <reified T : Any> bindToPropertyWithBackupNullable(key: String? = null): ReadWriteProperty<PreferenceHolder, T?>
             = bindToPropertyWithBackupNullable(T::class, object : TypeToken<T>() {}.type, key)
 
-    protected fun <T: Any> bindToPreferenceField(clazz: KClass<T>, default: T?, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T>
+    protected fun <T: Any> bindToPreferenceField(clazz: KClass<T>, default: T, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T>
             = PreferenceFieldBinder(clazz, default, type, key)
 
     protected fun <T: Any> bindToPreferenceFieldNullable(clazz: KClass<T>, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T?>
             = PreferenceFieldBinderNullable(clazz, type, key)
 
-    protected fun <T: Any> bindToPropertyWithBackup(clazz: KClass<T>, default: T?, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T>
+    protected fun <T: Any> bindToPropertyWithBackup(clazz: KClass<T>, default: T, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T>
             = PropertyWithBackup(clazz, default, type, key)
 
     protected fun <T: Any> bindToPropertyWithBackupNullable(clazz: KClass<T>, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T?>
