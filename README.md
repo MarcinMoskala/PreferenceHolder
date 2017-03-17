@@ -41,6 +41,11 @@ object UserPref: PreferenceHolder() {
     // can be used as type of property binded to SharedPreference field.
     var character: Character? by bindToPreferenceFieldNullable()
     var savedGame: Game? by bindToPreferenceFieldNullable()
+
+    // Single level collections are also supported since 1.2
+    var longList: Map<Int, Long> by bindToPreferenceField(mapOf(0 to 12L, 10 to 143L))
+    var propTest: List<Character>? by bindToPropertyWithBackupNullable()
+    var elemTest: Set<Elems> by bindToPreferenceField(setOf(Elems.Elem1, Elems.Elem3))
 }
 ```
 
