@@ -73,7 +73,7 @@ To add PreferenceHolder to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
-    compile 'com.github.MarcinMoskala:PreferenceHolder:1.1-beta.1'
+    compile 'com.github.MarcinMoskala:PreferenceHolder:1.2'
 }
 ```
 
