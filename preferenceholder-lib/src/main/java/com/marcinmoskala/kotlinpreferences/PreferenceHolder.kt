@@ -13,6 +13,8 @@ import com.marcinmoskala.kotlinpreferences.bindings.PropertyWithBackupNullable
 import java.lang.reflect.Type
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
+import kotlin.reflect.KMutableProperty
+import kotlin.reflect.KProperty
 
 abstract class PreferenceHolder {
 
@@ -28,21 +30,25 @@ abstract class PreferenceHolder {
     protected inline fun <reified T : Any> bindToPropertyWithBackupNullable(key: String? = null): ReadWriteProperty<PreferenceHolder, T?>
             = bindToPropertyWithBackupNullable(T::class, object : TypeToken<T>() {}.type, key)
 
-    protected fun <T: Any> bindToPreferenceField(clazz: KClass<T>, default: T, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T>
+    protected fun <T : Any> bindToPreferenceField(clazz: KClass<T>, default: T, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T>
             = PreferenceFieldBinder(clazz, default, type, key)
 
-    protected fun <T: Any> bindToPreferenceFieldNullable(clazz: KClass<T>, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T?>
+    protected fun <T : Any> bindToPreferenceFieldNullable(clazz: KClass<T>, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T?>
             = PreferenceFieldBinderNullable(clazz, type, key)
 
-    protected fun <T: Any> bindToPropertyWithBackup(clazz: KClass<T>, default: T, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T>
+    protected fun <T : Any> bindToPropertyWithBackup(clazz: KClass<T>, default: T, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T>
             = PropertyWithBackup(clazz, default, type, key)
 
-    protected fun <T: Any> bindToPropertyWithBackupNullable(clazz: KClass<T>, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T?>
+    protected fun <T : Any> bindToPropertyWithBackupNullable(clazz: KClass<T>, type: Type, key: String?): ReadWriteProperty<PreferenceHolder, T?>
             = PropertyWithBackupNullable(clazz, type, key)
 
     companion object {
 
         internal lateinit var preferences: SharedPreferences
+
+        var getOverride: ((classRef: PreferenceHolder, property: String) -> Any)? = null
+
+        var setOverride: ((classRef: PreferenceHolder, property: String, value: Any?) -> Unit)? = null
 
         var preferencesGson: Gson = GsonBuilder().create()
 
