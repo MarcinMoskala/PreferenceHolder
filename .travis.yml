@@ -23,6 +23,7 @@ before_script:
 env:
   matrix:
     - TEST=:preferenceholder-lib:connectedDebugAndroidTest
+    - TEST=:preferenceholder-lib:test
 
 script:
   - ./gradlew $TEST -i
