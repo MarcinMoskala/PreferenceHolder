@@ -15,17 +15,3 @@ object TestPreferences: PreferenceHolder() {
     var experience: Float? by bindToPreferenceFieldNullable()
     var className: String? by bindToPreferenceFieldNullable()
 }
-
-object PropertiesPreferences: PreferenceHolder() {
-    var canEatPie: Boolean by bindToPropertyWithBackup(true)
-    var pieBaked: Int by bindToPropertyWithBackup(5)
-    var allPieInTheWorld: Long by bindToPropertyWithBackup(-1L)
-    var pieEaten: Float by bindToPropertyWithBackup(0.0F)
-    var bestPieName: String by bindToPropertyWithBackup("Pie")
-
-    var isMonsterKiller: Boolean? by bindToPropertyWithBackupNullable()
-    var monstersKilled: Int? by bindToPropertyWithBackupNullable()
-    var numberOfHahaInLough: Long? by bindToPropertyWithBackupNullable()
-    var experience: Float? by bindToPropertyWithBackupNullable()
-    var className: String? by bindToPropertyWithBackupNullable()
-}
