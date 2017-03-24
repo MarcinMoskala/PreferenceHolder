@@ -29,7 +29,7 @@ class PreferenceFieldNullableTest : BaseTest() {
     @Test
     fun complexListTest() {
         val character1 = Character("Marcin", "Human", "Wizzard")
-        val character2 = Character("Marcin", "SuperHuman", "Wizzard")
+        val character2 = Character("SuperMarcin", "SuperHuman", "SuperWizzard")
         testValues(CollectionsPref::propTest, null, listOf(character1), listOf(character1, character2), listOf(character1))
     }
 
