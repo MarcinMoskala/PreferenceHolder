@@ -9,7 +9,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal open class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val type: Type, val key: String?) : ReadWriteProperty<PreferenceHolder, T?> {
+internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val type: Type, val key: String?) : ReadWriteProperty<PreferenceHolder, T?> {
 
     val pref: SharedPreferences
         get() = PreferenceHolder.preferences
