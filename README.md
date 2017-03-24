@@ -32,10 +32,8 @@ object UserPref: PreferenceHolder() {
     var isMonsterKiller: Boolean? by bindToPreferenceFieldNullable()
     var monstersKilled: Int? by bindToPreferenceFieldNullable()
     
-    // Property with backup is reading stored value in the first usage, 
-    // and saving it, in background, each time it is changed.
-    var experience: Float? by bindToPropertyWithBackup(-1.0F) 
-    var className: String? by bindToPropertyWithBackupNullable()
+    var experience: Float? by bindToPreferenceField(-1.0F) 
+    var className: String? by bindToPreferenceFieldNullable()
 
     // Each type, that can be serialized and deserialized using Gson, 
     // can be used as type of property binded to SharedPreference field.
