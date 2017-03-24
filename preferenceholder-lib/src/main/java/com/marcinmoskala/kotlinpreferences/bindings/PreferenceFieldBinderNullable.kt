@@ -11,6 +11,10 @@ import kotlin.reflect.KProperty
 
 internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val type: Type, val key: String?) : ReadWriteProperty<PreferenceHolder, T?>, PreferenceBinding {
 
+    init {
+        PreferenceHolder.propertiesReference += this
+    }
+
     override fun clear() {
         field = null
         propertySet = false
@@ -33,9 +37,8 @@ internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val 
 
     override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T?) {
         propertySet = true
-        if (value == field) return
         field = value
-        if (!testingMode) saveValueInThread(property, value)
+        if (value != field && !testingMode) saveValueInThread(property, value)
     }
 
     private fun saveValueInThread(property: KProperty<*>, value: T?) {
