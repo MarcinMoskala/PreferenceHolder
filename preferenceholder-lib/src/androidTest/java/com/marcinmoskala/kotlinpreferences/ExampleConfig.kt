@@ -1,7 +1,5 @@
 package com.marcinmoskala.kotlinpreferences
 
-import android.content.Context
-
 object TestPreferences: PreferenceHolder() {
     var canEatPie: Boolean by bindToPreferenceField(true)
     var pieBaked: Int by bindToPreferenceField(5)

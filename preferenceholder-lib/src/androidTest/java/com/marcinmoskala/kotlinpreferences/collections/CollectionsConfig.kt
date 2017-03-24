@@ -1,7 +1,6 @@
 package com.marcinmoskala.kotlinpreferences.collections
 
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder
-import com.marcinmoskala.kotlinpreferences.TestPreferences
 import com.marcinmoskala.kotlinpreferences.objects.Character
 
 object CollectionsPref: PreferenceHolder() {

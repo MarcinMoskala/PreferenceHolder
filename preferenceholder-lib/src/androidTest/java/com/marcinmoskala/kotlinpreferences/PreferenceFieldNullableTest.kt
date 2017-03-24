@@ -1,6 +1,5 @@
 package com.marcinmoskala.kotlinpreferences
 
-import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.marcinmoskala.kotlinpreferences.TestPreferences.className
 import com.marcinmoskala.kotlinpreferences.TestPreferences.experience

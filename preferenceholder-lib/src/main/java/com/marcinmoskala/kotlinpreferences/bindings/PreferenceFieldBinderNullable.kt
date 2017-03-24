@@ -1,8 +1,5 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package com.marcinmoskala.kotlinpreferences.bindings
 
-import android.content.SharedPreferences
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.getPreferencesOrThrowError
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.testingMode
@@ -57,16 +54,7 @@ internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val 
         val key = getKey(key, property)
         val pref = getPreferencesOrThrowError()
         if (!pref.contains(key)) return null
-        return pref.getByKey(key)
-    }
-
-    private fun SharedPreferences.getByKey(key: String): T? = when (clazz.simpleName) {
-        "Long" -> getLong(key, -1L) as? T
-        "Int" -> getInt(key, -1) as? T
-        "String" -> getString(key, null) as? T
-        "Boolean" -> getBoolean(key, false) as? T
-        "Float" -> getFloat(key, -1.0F) as T
-        else -> getString(key, null)?.fromJson<T>(type) as? T
+        return pref.getFromPreference(clazz, type, key)
     }
 
     private fun removeValue(property: KProperty<*>) {

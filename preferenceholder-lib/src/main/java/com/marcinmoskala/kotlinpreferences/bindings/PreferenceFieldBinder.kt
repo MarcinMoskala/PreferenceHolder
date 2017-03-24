@@ -1,5 +1,3 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package com.marcinmoskala.kotlinpreferences.bindings
 
 import android.content.SharedPreferences
@@ -45,13 +43,6 @@ internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default:
 
     private fun SharedPreferences.getValue(property: KProperty<*>): T {
         val key = getKey(key, property)
-        return when (clazz.simpleName) {
-            "Long" -> getLong(key, default as Long) as T
-            "Int" -> getInt(key, default as Int) as T
-            "String" -> getString(key, default as? String) as T
-            "Boolean" -> getBoolean(key, default as Boolean) as T
-            "Float" -> getFloat(key, default as Float) as T
-            else -> getString(key, default.toJson()).fromJson(type)
-        }
+        return getFromPreference(clazz, type, default, key)
     }
 }

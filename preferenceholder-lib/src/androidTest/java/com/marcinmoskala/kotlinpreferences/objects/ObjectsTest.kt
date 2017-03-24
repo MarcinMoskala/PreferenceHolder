@@ -1,9 +1,7 @@
 package com.marcinmoskala.kotlinpreferences.objects
 
-import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.marcinmoskala.kotlinpreferences.BaseTest
-import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import com.marcinmoskala.kotlinpreferences.testValues
 import org.junit.Test
 import org.junit.runner.RunWith
