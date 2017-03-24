@@ -2,7 +2,6 @@ package com.marcinmoskala.kotlinpreferences.bindings
 
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import java.lang.reflect.Type
-import kotlin.reflect.KClass
 
 internal fun Any?.toJson() = if (this == null) null else PreferenceHolder.preferencesGson.toJson(this)
 
