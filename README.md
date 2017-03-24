@@ -42,7 +42,7 @@ object UserPref: PreferenceHolder() {
 
     // Single level collections are also supported since 1.2
     var longList: Map<Int, Long> by bindToPreferenceField(mapOf(0 to 12L, 10 to 143L))
-    var propTest: List<Character>? by bindToPropertyWithBackupNullable()
+    var propTest: List<Character>? by bindToPreferenceFieldNullable()
     var elemTest: Set<Elems> by bindToPreferenceField(setOf(Elems.Elem1, Elems.Elem3))
 }
 ```
