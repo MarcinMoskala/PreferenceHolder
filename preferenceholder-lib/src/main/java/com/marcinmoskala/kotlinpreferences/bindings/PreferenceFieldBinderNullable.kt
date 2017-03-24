@@ -35,17 +35,15 @@ internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val 
         propertySet = true
         if (value == field) return
         field = value
-
-        if (!testingMode)
-            saveNewValue(property, value)
+        if (!testingMode) saveValueInThread(property, value)
     }
 
-    private fun saveNewValue(property: KProperty<*>, value: T?) {
+    private fun saveValueInThread(property: KProperty<*>, value: T?) {
         thread {
             if (value == null) {
                 removeValue(property)
             } else {
-                saveValue(property, value)
+                saveValue(property, clazz, key, value)
             }
         }
     }
@@ -59,13 +57,7 @@ internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val 
 
     private fun removeValue(property: KProperty<*>) {
         val pref = getPreferencesOrThrowError()
-        pref.edit()
-                .remove(getKey(key, property))
-                .apply()
-    }
-
-    private fun saveValue(property: KProperty<*>, value: T) {
-        val pref = getPreferencesOrThrowError()
-        pref.edit().apply { putValue(clazz, value, getKey(key, property)) }.apply()
+        val key = getKey(key, property)
+        pref.edit().remove(key).apply()
     }
 }

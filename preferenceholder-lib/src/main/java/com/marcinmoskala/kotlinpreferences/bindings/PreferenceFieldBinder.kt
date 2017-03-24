@@ -26,14 +26,11 @@ internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default:
     override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T) {
         if (value == field) return
         field = value
-        if (!testingMode) saveNewValue(property, value)
+        if (!testingMode) saveValueInThread(property, value)
     }
 
-    private fun saveNewValue(property: KProperty<*>, value: T) {
-        thread {
-            val pref = getPreferencesOrThrowError()
-            pref.edit().apply { putValue(clazz, value, getKey(key, property)) }.apply()
-        }
+    private fun saveValueInThread(property: KProperty<*>, value: T) {
+        thread { saveValue(property, clazz, key, value) }
     }
 
     private fun readValue(property: KProperty<*>): T {

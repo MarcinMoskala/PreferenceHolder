@@ -3,8 +3,15 @@
 package com.marcinmoskala.kotlinpreferences.bindings
 
 import android.content.SharedPreferences
+import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
+import kotlin.reflect.KProperty
+
+internal fun <T: Any> saveValue(property: KProperty<*>, clazz: KClass<*>, key: String?, value: T) {
+    val pref = PreferenceHolder.getPreferencesOrThrowError()
+    pref.edit().apply { putValue(clazz, value, getKey(key, property)) }.apply()
+}
 
 internal fun SharedPreferences.Editor.putValue(clazz: KClass<*>, value: Any, key: String) {
     when (clazz.simpleName) {
