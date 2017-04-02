@@ -61,11 +61,21 @@ class App : Application() {
 }
 ```
 
-It it suggested to do it in project Application class, but it can also be done in BaseActivity or just first activity starting app. As an alternative, there can also be added PreferenceHolderApplication as an name in application in AndroidManifest: ([example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/sample/src/main/AndroidManifest.xml#L12))
+It it suggested to do it in project Application class. As an alternative, there can also be added PreferenceHolderApplication as an name in application in AndroidManifest: ([example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/sample/src/main/AndroidManifest.xml#L12))
 
 ```
 android:name=".PreferenceHolderApplication"
 ```
+
+## Unit testing components
+
+Library also include test mode:
+
+```
+PreferenceHolder.testingMode = true
+```
+
+When it is turned on, then all properties are acting just like normal properties without binding to preference field. This allows to make unit tests to presenters and use cases that are using instance of PreferenceHolder.
 
 ## Install
 
@@ -73,7 +83,7 @@ To add PreferenceHolder to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
-    compile 'com.github.marcinmoskala:PreferenceHolder:1.2'
+    compile 'com.github.marcinmoskala:PreferenceHolder:1.3'
 }
 ```
 
