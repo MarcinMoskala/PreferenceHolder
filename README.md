@@ -64,7 +64,7 @@ class App : Application() {
 It it suggested to do it in project Application class. As an alternative, there can also be added PreferenceHolderApplication as an name in application in AndroidManifest: ([example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/sample/src/main/AndroidManifest.xml#L12))
 
 ```
-android:name=".PreferenceHolderApplication"
+android:name="com.marcinmoskala.kotlinpreferences.PreferenceHolderApplication"
 ```
 
 ## Unit testing components
