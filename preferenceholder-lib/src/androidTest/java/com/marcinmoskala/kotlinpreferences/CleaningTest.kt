@@ -6,6 +6,7 @@ import com.marcinmoskala.kotlinpreferences.TestPreferences.experience
 import com.marcinmoskala.kotlinpreferences.TestPreferences.isMonsterKiller
 import com.marcinmoskala.kotlinpreferences.TestPreferences.monstersKilled
 import com.marcinmoskala.kotlinpreferences.TestPreferences.numberOfHahaInLough
+import com.marcinmoskala.kotlinpreferences.collections.CollectionsPref
 import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -42,5 +43,14 @@ class CleaningTest: BaseTest() {
         assertEquals(null, numberOfHahaInLough)
         assertEquals(null, experience)
         assertEquals(null, className)
+    }
+
+    @Test
+    fun cleaningIsOnlyApplyedToSinglePrefClass() {
+        TestPreferences.isMonsterKiller = false
+        TestPreferences.monstersKilled = 1000
+        CollectionsPref.clear()
+        assertEquals(false, isMonsterKiller)
+        assertEquals(1000, monstersKilled)
     }
 }
