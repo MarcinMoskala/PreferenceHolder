@@ -44,8 +44,8 @@ abstract class PreferenceHolder {
             if(!prevAccessible) p.isAccessible = true
             val delegate = p.getDelegate(pref)
             when (delegate) {
-                is PreferenceFieldBinder<*> -> delegate.clear(p)
-                is PreferenceFieldBinderNullable<*> -> delegate.clear(p)
+                is PreferenceFieldBinder<*> -> delegate.clear(this, p)
+                is PreferenceFieldBinderNullable<*> -> delegate.clear(this, p)
             }
             p.isAccessible = prevAccessible
         }
@@ -93,9 +93,5 @@ abstract class PreferenceHolder {
         internal var preferences: SharedPreferences? = null
 
         internal fun getPreferencesOrThrowError(): SharedPreferences = PreferenceHolder.preferences ?: throw Error(noPreferencesSetErrorText)
-
-        fun clear() {
-            // TODO
-        }
     }
 }

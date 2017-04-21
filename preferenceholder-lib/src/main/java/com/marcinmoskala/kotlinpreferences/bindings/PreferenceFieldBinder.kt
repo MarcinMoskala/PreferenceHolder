@@ -12,9 +12,8 @@ import kotlin.reflect.KProperty
 
 internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T, val type: Type, val key: String?) : ReadWriteProperty<PreferenceHolder, T> {
 
-    fun clear(property: KProperty<*>) {
-        field = null
-        saveNewValue(property, default)
+    fun clear(thisRef: PreferenceHolder, property: KProperty<*>) {
+        setValue(thisRef, property, default)
     }
 
     var field: T? = null
@@ -27,12 +26,14 @@ internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default:
     override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T) {
         if (value == field) return
         field = value
-        if (!testingMode) thread { saveNewValue(property, value) }
+        if (!testingMode) saveNewValue(property, value)
     }
 
     private fun saveNewValue(property: KProperty<*>, value: T) {
-        val pref = getPreferencesOrThrowError()
-        pref.edit().apply { putValue(clazz, value, getKey(key, property)) }.apply()
+        thread {
+            val pref = getPreferencesOrThrowError()
+            pref.edit().apply { putValue(clazz, value, getKey(key, property)) }.apply()
+        }
     }
 
     private fun readValue(property: KProperty<*>): T {
