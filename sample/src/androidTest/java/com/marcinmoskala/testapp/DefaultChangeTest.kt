@@ -15,7 +15,7 @@ class DefaultChangeTest {
 
     init {
         PreferenceHolder.setContext(InstrumentationRegistry.getTargetContext())
-        PreferenceHolder.clear()
+        TestPreferences.clear()
     }
 
     @Test
