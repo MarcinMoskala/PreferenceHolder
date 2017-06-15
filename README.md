@@ -6,7 +6,7 @@ Kotlin Android Library, that makes preference usage simple and fun.
 [![Build Status](https://travis-ci.org/MarcinMoskala/PreferenceHolder.svg?branch=master)](https://travis-ci.org/MarcinMoskala/PreferenceHolder)
 [![codebeat badge](https://codebeat.co/badges/035647e2-1a10-48b8-80ae-e6a02c5c0ded)](https://codebeat.co/projects/github-com-marcinmoskala-preferenceholder-master)
 
-This library younger brother of [KotlinPreferences](https://github.com/MarcinMoskala/KotlinPreferences).
+This library is younger brother of [KotlinPreferences](https://github.com/MarcinMoskala/KotlinPreferences).
 
 With PreferenceHolder, you can define different preference fields this way:
 
