@@ -1,8 +1,7 @@
 # PreferenceHolder
 Kotlin Android Library, that makes preference usage simple and fun.
 
-[![](https://jitpack.io/v/MarcinMoskala/PreferenceHolder.svg)](https://jitpack.io/#MarcinMoskala/PreferenceHolder)
-[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+[![](https://jitpack.io/v/com.MarcinMoskala/PreferenceHolder.svg)](https://jitpack.io/#com.MarcinMoskala/PreferenceHolder)[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.org/MarcinMoskala/PreferenceHolder.svg?branch=master)](https://travis-ci.org/MarcinMoskala/PreferenceHolder)
 [![codebeat badge](https://codebeat.co/badges/035647e2-1a10-48b8-80ae-e6a02c5c0ded)](https://codebeat.co/projects/github-com-marcinmoskala-preferenceholder-master)
 
@@ -83,7 +82,7 @@ To add PreferenceHolder to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
-    compile 'com.github.marcinmoskala:PreferenceHolder:1.4'
+    compile 'com.marcinmoskala:PreferenceHolder:1.4'
 }
 ```
 
