@@ -36,12 +36,11 @@ object UserPref: PreferenceHolder() {
     var experience: Float? by bindToPropertyWithBackup(-1.0F) 
     var className: String? by bindToPropertyWithBackupNullable()
 
-    // Each type, that can be serialized and deserialized using Gson, 
-    // can be used as type of property binded to SharedPreference field.
+    // Any type can used if serializer is set. See: Gson serialization
     var character: Character? by bindToPreferenceFieldNullable()
     var savedGame: Game? by bindToPreferenceFieldNullable()
 
-    // Single level collections are also supported since 1.2
+    // Single level collections are also supported if serializer is set. See: Gson serialization
     var longList: Map<Int, Long> by bindToPreferenceField(mapOf(0 to 12L, 10 to 143L))
     var propTest: List<Character>? by bindToPropertyWithBackupNullable()
     var elemTest: Set<Elems> by bindToPreferenceField(setOf(Elems.Elem1, Elems.Elem3))
@@ -82,17 +81,35 @@ To add PreferenceHolder to the project, add in build.gradle file:
 
 ```groovy
 dependencies {
-    compile 'com.marcinmoskala:PreferenceHolder:1.4'
+    compile "com.marcinmoskala.PreferenceHolder:preferenceholder:1.5"
 }
 ```
 
-And while library is located on JitPack, remember to add on module build.gradle (unless you already have it):
+While library is located on JitPack, remember to add on module build.gradle (unless you already have it):
 
 ```groovy
 repositories {
     maven { url 'https://jitpack.io' }
 }
 ```
+
+## Gson serialization
+
+To use Gson serializer, we need to add following dependency:
+
+```groovy
+dependencies {
+    compile "com.marcinmoskala.PreferenceHolder:preferenceholder-gson-serializer:1.5"
+}
+```
+
+And specify `GsonSerializer` as `PreferenceHolder` serializer: 
+
+```kotlin
+PreferenceHolder.serializer = GsonSerializer(Gson())
+```
+
+Since then, we can use all types, even one not supported by SharedPreference (like custom objects `Character` and `Game`, or collections)
 
 License
 -------
