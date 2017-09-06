@@ -15,6 +15,8 @@ jdk:
 sudo: true
 
 before_script:
+  - echo y | android list sdk --extended --no-ui --all
+  - android list targets
   - echo y | android update sdk -a --no-ui --filter sys-img-armeabi-v7a-android-22,sys-img-x86_64-android-22
   - echo y | android create avd --force -n test -t android-22 --abi armeabi-v7a
   - emulator -avd test -no-window &
