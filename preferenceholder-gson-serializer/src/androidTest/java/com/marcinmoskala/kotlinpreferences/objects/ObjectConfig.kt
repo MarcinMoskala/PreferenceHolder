@@ -5,7 +5,6 @@ import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 object ComplexTestPreferences: PreferenceHolder() {
     var character: Character? by bindToPreferenceFieldNullable()
     var savedGame: Game? by bindToPreferenceFieldNullable()
-
 }
 
 data class Character(
