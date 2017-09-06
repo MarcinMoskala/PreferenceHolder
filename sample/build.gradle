@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    compile project(':preferenceholder-lib')
+    compile project(':preferenceholder')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'com.android.support:appcompat-v7:25.2.0'
     testCompile 'junit:junit:4.12'

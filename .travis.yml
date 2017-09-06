@@ -22,7 +22,8 @@ before_script:
 
 env:
   matrix:
-    - TEST=:preferenceholder-lib:connectedDebugAndroidTest
+    - TEST=:preferenceholder:connectedDebugAndroidTest
+    - TEST=:preferenceholder-gson-serializer:connectedDebugAndroidTest
 
 script:
   - ./gradlew $TEST -i

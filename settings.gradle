@@ -1,1 +1,1 @@
-include ':preferenceholder-lib', ':sample'
+include ':preferenceholder', ':preferenceholder-gson-serializer', ':sample'
