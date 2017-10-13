@@ -5,7 +5,7 @@ Kotlin Android Library, that makes preference usage simple and fun.
 [![Build Status](https://travis-ci.org/MarcinMoskala/PreferenceHolder.svg?branch=master)](https://travis-ci.org/MarcinMoskala/PreferenceHolder)
 [![codebeat badge](https://codebeat.co/badges/035647e2-1a10-48b8-80ae-e6a02c5c0ded)](https://codebeat.co/projects/github-com-marcinmoskala-preferenceholder-master)
 
-To stay current with news about library [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40marcinmoskala)](https://twitter.com/marcinmoskala?ref_src=twsrc%5Etfw)
+To stay up-to-date with news about library [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40marcinmoskala)](https://twitter.com/marcinmoskala?ref_src=twsrc%5Etfw)
 
 This library is younger brother of [KotlinPreferences](https://github.com/MarcinMoskala/KotlinPreferences).
 
@@ -61,7 +61,7 @@ class App : Application() {
 }
 ```
 
-It it suggested to do it in project Application class. As an alternative, there can also be added PreferenceHolderApplication as an name in application in AndroidManifest: ([example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/sample/src/main/AndroidManifest.xml#L12))
+It it suggested to do it in project Application class. As an alternative, PreferenceHolderApplication can also be added as a name of an application in AndroidManifest: ([example](https://github.com/MarcinMoskala/PreferenceHolder/blob/master/sample/src/main/AndroidManifest.xml#L12))
 
 ```
 android:name="com.marcinmoskala.kotlinpreferences.PreferenceHolderApplication"
@@ -75,11 +75,11 @@ Library also include test mode:
 PreferenceHolder.testingMode = true
 ```
 
-When it is turned on, then all properties are acting just like normal properties without binding to preference field. This allows to make unit tests to presenters and use cases that are using instance of PreferenceHolder.
+When it is turned on, then all properties are acting just like normal properties without binding to preference field. This allows to make unit tests to presenters and to use cases that are using instance of PreferenceHolder.
 
 ## Install
 
-To add PreferenceHolder to the project, add in build.gradle file:
+To add PreferenceHolder to the project, add to build.gradle file:
 
 ```groovy
 dependencies {
@@ -87,7 +87,7 @@ dependencies {
 }
 ```
 
-While library is located on JitPack, remember to add on module build.gradle (unless you already have it):
+While library is located on JitPack, remember to add to module build.gradle (unless you already have it):
 
 ```groovy
 repositories {
@@ -115,11 +115,11 @@ Since then, we can use all types, even one not supported by SharedPreference (li
 
 ## Other libraries
 
-If you like it, remamber to leave the star and check out my other libraries:
+If you like it, remember to leave the star and check out my other libraries:
  * [ActivityStarter](https://github.com/MarcinMoskala/ActivityStarter/blob/master/README.md) - Simple Android Library, that provides easy way to start and save state of Activities, Fragments, Services and Receivers with arguments.
  * [ArcSeekBar](https://github.com/MarcinMoskala/ArcSeekBar) - Good looking curved Android SeekBar
  * [VideoPlayView](https://github.com/MarcinMoskala/VideoPlayView) - Custom Android view with video player, loader and placeholder image
- * [KotlinAndroidViewBindings](https://github.com/MarcinMoskala/KotlinAndroidViewBindings) - Bindings from simple Kotlin types (Boolean, String) to layout traits (visibility, text).
+ * [KotlinAndroidViewBindings](https://github.com/MarcinMoskala/KotlinAndroidViewBindings) - Bindings for properties with simple Kotlin types (Boolean, String) to layout traits (visibility, text).
 
 License
 -------
