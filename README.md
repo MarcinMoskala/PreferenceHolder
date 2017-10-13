@@ -113,6 +113,14 @@ PreferenceHolder.serializer = GsonSerializer(Gson())
 
 Since then, we can use all types, even one not supported by SharedPreference (like custom objects `Character` and `Game`, or collections)
 
+## Other libraries
+
+If you like it, remamber to leave the star and check out my other libraries:
+ * [ActivityStarter](https://github.com/MarcinMoskala/ActivityStarter/blob/master/README.md) - Simple Android Library, that provides easy way to start and save state of Activities, Fragments, Services and Receivers with arguments.
+ * [ArcSeekBar](https://github.com/MarcinMoskala/ArcSeekBar) - Good looking curved Android SeekBar
+ * [VideoPlayView](https://github.com/MarcinMoskala/VideoPlayView) - Custom Android view with video player, loader and placeholder image
+ * [KotlinAndroidViewBindings](https://github.com/MarcinMoskala/KotlinAndroidViewBindings) - Bindings from simple Kotlin types (Boolean, String) to layout traits (visibility, text).
+
 License
 -------
 
