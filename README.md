@@ -4,6 +4,8 @@ Kotlin Android Library, that makes preference usage simple and fun.
 [![](https://jitpack.io/v/com.MarcinMoskala/PreferenceHolder.svg)](https://jitpack.io/#com.MarcinMoskala/PreferenceHolder)[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.org/MarcinMoskala/PreferenceHolder.svg?branch=master)](https://travis-ci.org/MarcinMoskala/PreferenceHolder)
 [![codebeat badge](https://codebeat.co/badges/035647e2-1a10-48b8-80ae-e6a02c5c0ded)](https://codebeat.co/projects/github-com-marcinmoskala-preferenceholder-master)
+[![Analytics](https://ga-beacon.appspot.com/UA-92159206-8/main-page?pixel)](https://github.com/MarcinMoskala/PreferenceHolder)
+[![Analytics](https://ga-beacon.appspot.com/UA-92159206-7/main-page?pixel)](https://github.com/MarcinMoskala/PreferenceHolder)
 
 To stay up-to-date with news about library [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40marcinmoskala)](https://twitter.com/marcinmoskala?ref_src=twsrc%5Etfw)
 
