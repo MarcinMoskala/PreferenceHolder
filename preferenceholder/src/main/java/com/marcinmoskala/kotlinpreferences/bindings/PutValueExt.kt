@@ -23,14 +23,14 @@ internal fun <T : Any> SharedPreferences.getFromPreference(clazz: KClass<T>, def
     "String" -> getString(key, default as? String) as T
     "Boolean" -> getBoolean(key, default as Boolean) as T
     "Float" -> getFloat(key, default as Float) as T
-    else -> getString(key, default.serialize()).deserialize<T>(clazz)
+    else -> getString(key, default.serialize()).deserialize<T>()
 }
 
 
 internal fun <T: Any> SharedPreferences.getFromPreference(clazz: KClass<T>, key: String): T?
         = getFromPreference(clazz, getDefault<T>(clazz), key)
 
-private fun <T: Any> String.deserialize(clazz: KClass<T>): T = getSerializer().deserialize<T>(this, clazz.java) as T
+private fun <T: Any> String.deserialize(): T = getSerializer().deserialize<T>(this) as T
 
 private fun <T> T.serialize() = getSerializer().serialize(this)
 
