@@ -3,15 +3,25 @@ package com.marcinmoskala.kotlinpreferences.bindings
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.getPreferencesOrThrowError
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.testingMode
+import java.lang.reflect.Type
 import kotlin.concurrent.thread
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val key: String?) : ReadWriteProperty<PreferenceHolder, T?> {
+internal class PreferenceFieldBinderNullable<T : Any>(
+        private val clazz: KClass<T>,
+        private val type: Type,
+        private val key: String?
+) : ReadWriteProperty<PreferenceHolder, T?>, Clearable {
 
-    fun clear(thisRef: PreferenceHolder, property: KProperty<*>) {
+    override fun clear(thisRef: PreferenceHolder, property: KProperty<*>) {
         setValue(thisRef, property, null)
+    }
+
+    override fun clearCache() {
+        propertySet = false
+        field = null
     }
 
     var propertySet: Boolean = false
@@ -52,7 +62,7 @@ internal class PreferenceFieldBinderNullable<T : Any>(val clazz: KClass<T>, val 
         val key = getKey(key, property)
         val pref = getPreferencesOrThrowError()
         if (!pref.contains(key)) return null
-        return pref.getFromPreference(clazz, key)
+        return pref.getFromPreference(clazz, type, key)
     }
 
     private fun removeValue(property: KProperty<*>) {

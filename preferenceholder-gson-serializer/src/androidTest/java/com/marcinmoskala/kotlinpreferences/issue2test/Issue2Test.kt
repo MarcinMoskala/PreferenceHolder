@@ -14,7 +14,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class Issue2Test {
 
-    class User(var name: String, var age: Int = 0)
+    data class User(var name: String, var age: Int = 0)
 
     object AppPreference : PreferenceHolder() {
         var users: List<User>? by bindToPreferenceFieldNullable()
@@ -29,6 +29,7 @@ class Issue2Test {
     fun booleanDefaultChangeTest() {
         val users = List(6) { i -> User("Name$i", i) }
         AppPreference.users = users
+        AppPreference.clearCache()
         val readUsers = AppPreference.users
         Assert.assertEquals(users, readUsers)
     }

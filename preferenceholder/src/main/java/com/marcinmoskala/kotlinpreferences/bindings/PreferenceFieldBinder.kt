@@ -4,15 +4,25 @@ import android.content.SharedPreferences
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.getPreferencesOrThrowError
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.testingMode
+import java.lang.reflect.Type
 import kotlin.concurrent.thread
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default: T, val key: String?) : ReadWriteProperty<PreferenceHolder, T> {
+internal class PreferenceFieldBinder<T : Any>(
+        private val clazz: KClass<T>,
+        private val type: Type,
+        private val default: T,
+        private val key: String?
+) : ReadWriteProperty<PreferenceHolder, T>, Clearable {
 
-    fun clear(thisRef: PreferenceHolder, property: KProperty<*>) {
+    override fun clear(thisRef: PreferenceHolder, property: KProperty<*>) {
         setValue(thisRef, property, default)
+    }
+
+    override fun clearCache() {
+        field = null
     }
 
     var field: T? = null
@@ -42,6 +52,6 @@ internal class PreferenceFieldBinder<T : Any>(val clazz: KClass<T>, val default:
 
     private fun SharedPreferences.getValue(property: KProperty<*>): T {
         val key = getKey(key, property)
-        return getFromPreference(clazz, default, key)
+        return getFromPreference(clazz, type, default, key)
     }
 }
