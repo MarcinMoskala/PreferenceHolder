@@ -1,7 +1,6 @@
 package com.marcinmoskala.kotlinpreferences.gson
 
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.marcinmoskala.kotlinpreferences.Serializer
 import java.lang.reflect.Type
 
