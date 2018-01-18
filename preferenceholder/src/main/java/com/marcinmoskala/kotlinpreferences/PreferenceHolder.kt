@@ -17,10 +17,10 @@ import kotlin.reflect.jvm.isAccessible
 abstract class PreferenceHolder {
 
     protected inline fun <reified T : Any> bindToPreferenceField(default: T, key: String? = null, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T>
-            = bindToPreferenceField(T::class, object : TypeToken<T>() {}.type, default, key)
+            = bindToPreferenceField(T::class, object : TypeToken<T>() {}.type, default, key, catching)
 
     protected inline fun <reified T : Any> bindToPreferenceFieldNullable(key: String? = null, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T?>
-            = bindToPreferenceFieldNullable(T::class, object : TypeToken<T>() {}.type, key)
+            = bindToPreferenceFieldNullable(T::class, object : TypeToken<T>() {}.type, key, catching)
 
     protected fun <T : Any> bindToPreferenceField(clazz: KClass<T>, type: Type, default: T, key: String?, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T>
             = PreferenceFieldBinder(clazz, type, default, key, catching)
