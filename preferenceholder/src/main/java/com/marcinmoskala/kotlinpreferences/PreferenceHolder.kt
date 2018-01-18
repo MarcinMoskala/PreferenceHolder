@@ -3,9 +3,7 @@ package com.marcinmoskala.kotlinpreferences
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.marcinmoskala.kotlinpreferences.bindings.Clearable
-import com.marcinmoskala.kotlinpreferences.bindings.PreferenceFieldBinder
-import com.marcinmoskala.kotlinpreferences.bindings.PreferenceFieldBinderNullable
+import com.marcinmoskala.kotlinpreferences.bindings.*
 import java.lang.reflect.Type
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
@@ -23,10 +21,10 @@ abstract class PreferenceHolder {
             = bindToPreferenceFieldNullable(T::class, object : TypeToken<T>() {}.type, key, catching)
 
     protected fun <T : Any> bindToPreferenceField(clazz: KClass<T>, type: Type, default: T, key: String?, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T>
-            = PreferenceFieldBinder(clazz, type, default, key, catching)
+            = if (catching) PreferenceFieldBinderCaching(clazz, type, default, key) else PreferenceFieldBinder(clazz, type, default, key)
 
     protected fun <T : Any> bindToPreferenceFieldNullable(clazz: KClass<T>, type: Type, key: String?, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T?>
-            = PreferenceFieldBinderNullable(clazz, type, key, catching)
+            = if (catching) PreferenceFieldBinderNullableCaching(clazz, type, key) else PreferenceFieldBinderNullable(clazz, type, key)
 
     /**
      *  Function used to clear all SharedPreference and PreferenceHolder data. Useful especially

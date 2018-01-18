@@ -4,11 +4,12 @@ import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.getPreferencesOrThrowError
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.testingMode
 import java.lang.reflect.Type
+import kotlin.concurrent.thread
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-internal class PreferenceFieldBinderNullable<T : Any>(
+internal class PreferenceFieldBinderNullableCaching<T : Any>(
         private val clazz: KClass<T>,
         private val type: Type,
         private val key: String?
@@ -27,7 +28,7 @@ internal class PreferenceFieldBinderNullable<T : Any>(
     var field: T? = null
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T? = when {
-        testingMode -> field
+        testingMode || propertySet -> field
         else -> readAndSetValue(property)
     }
 
@@ -39,20 +40,21 @@ internal class PreferenceFieldBinderNullable<T : Any>(
     }
 
     override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T?) {
-        if (testingMode) {
-            propertySet = true
-            if (value == field) return
-            field = value
-        } else {
+        propertySet = true
+        if (value == field) return
+        field = value
+
+        if (!testingMode)
             saveNewValue(property, value)
-        }
     }
 
     private fun saveNewValue(property: KProperty<*>, value: T?) {
-        if (value == null) {
-            removeValue(property)
-        } else {
-            saveValue(property, value)
+        thread {
+            if (value == null) {
+                removeValue(property)
+            } else {
+                saveValue(property, value)
+            }
         }
     }
 
