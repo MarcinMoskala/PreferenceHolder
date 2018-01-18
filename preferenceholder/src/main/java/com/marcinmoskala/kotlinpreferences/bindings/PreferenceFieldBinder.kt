@@ -14,7 +14,8 @@ internal class PreferenceFieldBinder<T : Any>(
         private val clazz: KClass<T>,
         private val type: Type,
         private val default: T,
-        private val key: String?
+        private val key: String?,
+        private val catching: Boolean
 ) : ReadWriteProperty<PreferenceHolder, T>, Clearable {
 
     override fun clear(thisRef: PreferenceHolder, property: KProperty<*>) {
@@ -29,12 +30,15 @@ internal class PreferenceFieldBinder<T : Any>(
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T = when {
         testingMode -> field ?: default
-        else -> field ?: readValue(property).apply { field = this }
+        catching -> field ?: readValue(property).apply { field = this }
+        else -> readValue(property)
     }
 
     override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T) {
-        if (value == field) return
-        field = value
+        if (catching) {
+            if (value == field) return
+            field = value
+        }
         if (!testingMode) saveNewValue(property, value)
     }
 

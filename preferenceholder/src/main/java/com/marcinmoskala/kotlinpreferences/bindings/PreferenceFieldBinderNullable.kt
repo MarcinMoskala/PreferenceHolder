@@ -12,7 +12,8 @@ import kotlin.reflect.KProperty
 internal class PreferenceFieldBinderNullable<T : Any>(
         private val clazz: KClass<T>,
         private val type: Type,
-        private val key: String?
+        private val key: String?,
+        private val catching: Boolean
 ) : ReadWriteProperty<PreferenceHolder, T?>, Clearable {
 
     override fun clear(thisRef: PreferenceHolder, property: KProperty<*>) {
@@ -29,6 +30,7 @@ internal class PreferenceFieldBinderNullable<T : Any>(
 
     override operator fun getValue(thisRef: PreferenceHolder, property: KProperty<*>): T? = when {
         testingMode || propertySet -> field
+        !catching -> readValue(property)
         else -> readAndSetValue(property)
     }
 
@@ -40,9 +42,11 @@ internal class PreferenceFieldBinderNullable<T : Any>(
     }
 
     override fun setValue(thisRef: PreferenceHolder, property: KProperty<*>, value: T?) {
-        propertySet = true
-        if (value == field) return
-        field = value
+        if(catching) {
+            propertySet = true
+            if (value == field) return
+            field = value
+        }
 
         if (!testingMode)
             saveNewValue(property, value)
