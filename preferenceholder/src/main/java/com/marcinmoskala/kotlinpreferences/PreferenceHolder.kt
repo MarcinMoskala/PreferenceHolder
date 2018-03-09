@@ -14,17 +14,17 @@ import kotlin.reflect.jvm.isAccessible
 
 abstract class PreferenceHolder {
 
-    protected inline fun <reified T : Any> bindToPreferenceField(default: T, key: String? = null, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T>
-            = bindToPreferenceField(T::class, object : TypeToken<T>() {}.type, default, key, catching)
+    protected inline fun <reified T : Any> bindToPreferenceField(default: T, key: String? = null, caching: Boolean = true): ReadWriteProperty<PreferenceHolder, T>
+            = bindToPreferenceField(T::class, object : TypeToken<T>() {}.type, default, key, caching)
 
-    protected inline fun <reified T : Any> bindToPreferenceFieldNullable(key: String? = null, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T?>
-            = bindToPreferenceFieldNullable(T::class, object : TypeToken<T>() {}.type, key, catching)
+    protected inline fun <reified T : Any> bindToPreferenceFieldNullable(key: String? = null, caching: Boolean = true): ReadWriteProperty<PreferenceHolder, T?>
+            = bindToPreferenceFieldNullable(T::class, object : TypeToken<T>() {}.type, key, caching)
 
-    protected fun <T : Any> bindToPreferenceField(clazz: KClass<T>, type: Type, default: T, key: String?, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T>
-            = if (catching) PreferenceFieldBinderCaching(clazz, type, default, key) else PreferenceFieldBinder(clazz, type, default, key)
+    protected fun <T : Any> bindToPreferenceField(clazz: KClass<T>, type: Type, default: T, key: String?, caching: Boolean = true): ReadWriteProperty<PreferenceHolder, T>
+            = if (caching) PreferenceFieldBinderCaching(clazz, type, default, key) else PreferenceFieldBinder(clazz, type, default, key)
 
-    protected fun <T : Any> bindToPreferenceFieldNullable(clazz: KClass<T>, type: Type, key: String?, catching: Boolean = true): ReadWriteProperty<PreferenceHolder, T?>
-            = if (catching) PreferenceFieldBinderNullableCaching(clazz, type, key) else PreferenceFieldBinderNullable(clazz, type, key)
+    protected fun <T : Any> bindToPreferenceFieldNullable(clazz: KClass<T>, type: Type, key: String?, caching: Boolean = true): ReadWriteProperty<PreferenceHolder, T?>
+            = if (caching) PreferenceFieldBinderNullableCaching(clazz, type, key) else PreferenceFieldBinderNullable(clazz, type, key)
 
     /**
      *  Function used to clear all SharedPreference and PreferenceHolder data. Useful especially
