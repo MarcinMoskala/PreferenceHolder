@@ -5,7 +5,6 @@ import com.marcinmoskala.kotlinpreferences.PreferenceHolder
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.getPreferencesOrThrowError
 import com.marcinmoskala.kotlinpreferences.PreferenceHolder.Companion.testingMode
 import java.lang.reflect.Type
-import kotlin.concurrent.thread
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
@@ -39,10 +38,8 @@ internal class PreferenceFieldBinderCaching<T : Any>(
     }
 
     private fun saveNewValue(property: KProperty<*>, value: T) {
-        thread {
-            val pref = getPreferencesOrThrowError()
-            pref.edit().apply { putValue(clazz, value, getKey(key, property)) }.apply()
-        }
+        val pref = getPreferencesOrThrowError()
+        pref.edit().apply { putValue(clazz, value, getKey(key, property)) }.apply()
     }
 
     private fun readValue(property: KProperty<*>): T {
