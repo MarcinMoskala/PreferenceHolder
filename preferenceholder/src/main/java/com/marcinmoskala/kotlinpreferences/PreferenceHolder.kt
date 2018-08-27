@@ -94,5 +94,34 @@ abstract class PreferenceHolder {
         internal var preferences: SharedPreferences? = null
 
         internal fun getPreferencesOrThrowError(): SharedPreferences = PreferenceHolder.preferences ?: throw Error(noPreferencesSetErrorText)
+
+        /**
+         * Keep track of the listeners in order to allow for listener deregistration and
+         * to prevent unwanted GC.
+         */
+        internal val listeners = mutableListOf<SharedPreferences.OnSharedPreferenceChangeListener>()
+
+        /**
+         * A set of methods to register and deregister change listeners.
+         */
+        fun registerPreferenceFieldChangeListener(listener: (preferences: SharedPreferences?, key: String?) -> Unit) =
+                registerPreferenceFieldChangeListener(SharedPreferences.OnSharedPreferenceChangeListener(listener))
+
+        fun registerPreferenceFieldChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+            listeners.add(listener)
+            preferences?.registerOnSharedPreferenceChangeListener(listener)
+        }
+
+        fun deregisterPreferenceFieldChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+            listeners.remove(listener)
+            preferences?.unregisterOnSharedPreferenceChangeListener(listener)
+        }
+
+        fun deregisterAllPreferenceFieldChangeListeners() {
+            listeners.forEach {
+                preferences?.unregisterOnSharedPreferenceChangeListener(it)
+            }
+            listeners.clear()
+        }
     }
 }
