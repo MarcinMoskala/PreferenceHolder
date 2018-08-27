@@ -18,19 +18,19 @@ internal fun SharedPreferences.Editor.putValue(clazz: KClass<*>, value: Any, key
     }
 }
 
-internal fun <T : Any> SharedPreferences.getFromPreference(clazz: KClass<T>, type: Type, default: T?, key: String): T = when (clazz.simpleName) {
-    "Long" -> getLong(key, default as Long) as T
-    "Int" -> getInt(key, default as Int) as T
-    "String" -> getString(key, default as? String) as T
-    "Boolean" -> getBoolean(key, default as Boolean) as T
-    "Float" -> getFloat(key, default as Float) as T
-    else -> getString(key, default.serialize()).deserialize<T>(type)
+internal fun <T : Any> SharedPreferences.getFromPreference(clazz: KClass<T>, type: Type, default: T?, key: String): T? = when (clazz.simpleName) {
+    "Long" -> getLong(key, default as Long) as? T
+    "Int" -> getInt(key, default as Int) as? T
+    "String" -> getString(key, default as? String) as? T
+    "Boolean" -> getBoolean(key, default as Boolean) as? T
+    "Float" -> getFloat(key, default as Float) as? T
+    else -> getString(key, default.serialize()).deserialize(type)
 }
 
 internal fun <T: Any> SharedPreferences.getFromPreference(clazz: KClass<T>, type: Type, key: String): T?
-        = getFromPreference(clazz, type, getDefault<T>(clazz), key)
+        = getFromPreference(clazz, type, getDefault(clazz), key)
 
-private fun <T: Any> String.deserialize(type: Type): T = getSerializer().deserialize(this, type) as T
+private fun <T: Any> String.deserialize(type: Type): T? = getSerializer().deserialize(this, type) as? T
 
 private fun <T> T.serialize() = getSerializer().serialize(this)
 

@@ -51,6 +51,6 @@ internal class PreferenceFieldBinder<T : Any>(
 
     private fun SharedPreferences.getValue(property: KProperty<*>): T {
         val key = getKey(key, property)
-        return getFromPreference(clazz, type, default, key)
+        return getFromPreference(clazz, type, default, key) as T
     }
 }
